@@ -46,3 +46,5 @@ group :development do
   # gem "spring"
 end
 
+# ユーザー認証
+gem 'sorcery'
