@@ -48,3 +48,6 @@ end
 
 # ユーザー認証
 gem 'sorcery'
+
+gem 'pry-byebug'
+gem 'pry-rails'
