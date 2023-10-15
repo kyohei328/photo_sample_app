@@ -58,14 +58,14 @@ const StyledLink = styled(Link)`
         </Logo>
         <NavItems>
           <NavItem>
-            {/* <StyledLink to="/photo/new">
+            <StyledLink to="/photo/new">
               アップロード
             </StyledLink>
           </NavItem>
           <NavItem>
             <StyledLink to="/photo/index">
               写真一覧
-            </StyledLink> */}
+            </StyledLink>
           </NavItem>
           <NavItem>
             <StyledLink to="/Login">
@@ -76,8 +76,8 @@ const StyledLink = styled(Link)`
       </Nabvar>
       <Wrapper>
         <Routes>
-          {/* <Route path="/photo/index" element={<IndexPhoto />}/>
-          <Route path="/photo/new" element={<AddPhoto />}/> */}
+          <Route path="/photo/index" element={<IndexPhoto />}/>
+          <Route path="/photo/new" element={<AddPhoto />}/>
           <Route path="/Login" element={<Login />}/>
           <Route path="/user/new" element={<UserCreate />}/>
         </Routes>
