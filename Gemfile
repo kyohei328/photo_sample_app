@@ -46,3 +46,8 @@ group :development do
   # gem "spring"
 end
 
+# ユーザー認証
+gem 'sorcery'
+
+gem 'pry-byebug'
+gem 'pry-rails'
