@@ -51,3 +51,5 @@ gem 'sorcery'
 
 gem 'pry-byebug'
 gem 'pry-rails'
+gem 'rack-cors'
+gem 'fast_jsonapi'

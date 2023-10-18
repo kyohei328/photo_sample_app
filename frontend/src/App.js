@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter,Routes,Route, Link } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Login from './components/Login';
 // import IndexPhoto from './components/IndexPhoto';
 // import AddPhoto from './components/AddPhoto';
 import UserCreate from './components/UserCreate';
+import Top from './components/Top';
 
-function App() {
 
+
+const Logo = styled.div`
+  font-weight: bold;
+  font-size: 23px;
+  letter-spacing: 3px;
+`
 const Nabvar = styled.nav`
   background: #dcdcdc;
   min-height: 6vh;
@@ -16,13 +22,6 @@ const Nabvar = styled.nav`
   justify-content: space-around;
   align-items: center;
 `
-
-const Logo = styled.div`
-  font-weight: bold;
-  font-size: 23px;
-  letter-spacing: 3px;
-`
-
 const NavItems = styled.ul`
   display: flex;
   width: 400px;
@@ -30,7 +29,6 @@ const NavItems = styled.ul`
   justify-content: space-around;
   list-style: none;
 `
-
 const NavItem = styled.li`
   font-size: 19px;
   font-weight: bold;
@@ -50,11 +48,22 @@ const StyledLink = styled(Link)`
   color: #000000;
 `
 
+function App(props) {
+  const [current_user, setCurrent_user] = useState('');
+
+  const current_userChange = (user) => {
+    setCurrent_user(user);
+  };
+
+  console.log(current_user)
+
   return (
-    <BrowserRouter>
+    <>
       <Nabvar>
         <Logo>
-          PhotoSample
+          <StyledLink to="/">
+            PhotoSample
+          </StyledLink>
         </Logo>
         <NavItems>
           <NavItem>
@@ -72,17 +81,21 @@ const StyledLink = styled(Link)`
               ログイン
             </StyledLink>
           </NavItem>
+          <NavItem>
+            {current_user}
+          </NavItem>
         </NavItems>
       </Nabvar>
       <Wrapper>
         <Routes>
+          <Route path="/" element={<Top />}/>
           {/* <Route path="/photo/index" element={<IndexPhoto />}/>
           <Route path="/photo/new" element={<AddPhoto />}/> */}
-          <Route path="/Login" element={<Login />}/>
+          <Route path="/Login" element={<Login onUserChange={current_userChange}/>}/>
           <Route path="/user/new" element={<UserCreate />}/>
         </Routes>
       </Wrapper>
-    </BrowserRouter>
+    </>
   );
 }
 

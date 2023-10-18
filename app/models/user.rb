@@ -4,11 +4,17 @@ class User < ApplicationRecord
   has_one_attached :avatar
   
   has_many :photos
+  has_many :api_keys, dependent: :destroy
 
   validates :email, presence: true
+  validates :password, length:{minimum: 3}, confirmation: true
+  validates :password_confirmation, presence: true
 
-  def active_api_key!
-    return api_key.active.first if api_key.active.exists?
-    api_key.create
+  def activate_api_key!
+    return api_keys.active.first if api_keys.active.exists?
+
+    api_keys.create
   end
 end
+
+

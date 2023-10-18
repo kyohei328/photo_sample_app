@@ -1,12 +1,16 @@
 class Api::V1::AuthenticationsController < ApplicationController
-    skip_before_action :authenticate
-    
-    def create
-      @user = logoin(params[:email], params[:password])
+  skip_before_action :authenticate
 
-      raise ActiveRecord::RecordNotFound unless @user
+  def create
+    # binding.pry
+    @user = login(params[:email], params[:password])
 
-      set_accsess_token!(@user)
-      render json: @user
-    end
+    raise ActiveRecord::RecordNotFound unless @user
+
+    # json_string = UserSerializer.new(@user).serialized_json
+    set_access_token!(@user)
+
+    # render json: json_string
+    render json: @user
+  end
 end
