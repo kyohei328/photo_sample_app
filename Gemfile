@@ -54,3 +54,5 @@ gem 'pry-rails'
 
 gem 'rack-cors'
 gem 'fast_jsonapi'
+# OGP
+gem "meta-tags"
