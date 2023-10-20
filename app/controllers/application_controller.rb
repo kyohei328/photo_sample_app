@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+# class ApplicationController < ActionController
   include Api::ExceptionHandler
   include ActionController::HttpAuthentication::Token::ControllerMethods
 

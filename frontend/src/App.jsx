@@ -3,10 +3,11 @@ import './App.css';
 import { Routes, Route, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Login from './components/Login';
-// import IndexPhoto from './components/IndexPhoto';
-// import AddPhoto from './components/AddPhoto';
+import IndexPhoto from './components/IndexPhoto';
+import AddPhoto from './components/AddPhoto';
 import UserCreate from './components/UserCreate';
 import Top from './components/Top';
+import PhotoShare from './components/PhotoShare';
 
 
 
@@ -15,7 +16,7 @@ const Logo = styled.div`
   font-size: 23px;
   letter-spacing: 3px;
 `
-const Nabvar = styled.nav`
+const Navbar = styled.nav`
   background: #dcdcdc;
   min-height: 6vh;
   display: flex;
@@ -34,6 +35,7 @@ const NavItem = styled.li`
   font-weight: bold;
   color: #000000;
   opacity: 0.7;
+  
   &:hover {
     opacity: 1;
   }
@@ -46,20 +48,20 @@ const Wrapper = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: #000000;
+  vertical-align: middle;
 `
 
 function App(props) {
-  const [current_user, setCurrent_user] = useState('');
+  const [current_user, setCurrent_user] = useState(null);
 
   const current_userChange = (user) => {
     setCurrent_user(user);
   };
 
-  console.log(current_user)
 
   return (
     <>
-      <Nabvar>
+      <Navbar>
         <Logo>
           <StyledLink to="/">
             PhotoSample
@@ -67,30 +69,28 @@ function App(props) {
         </Logo>
         <NavItems>
           <NavItem>
-            {/* <StyledLink to="/photo/new">
+            <StyledLink to="/photo/new">
               アップロード
             </StyledLink>
           </NavItem>
           <NavItem>
             <StyledLink to="/photo/index">
               写真一覧
-            </StyledLink> */}
-          </NavItem>
-          <NavItem>
-            <StyledLink to="/Login">
-              ログイン
             </StyledLink>
           </NavItem>
           <NavItem>
-            {current_user}
+            { current_user ? (
+              <StyledLink to="#">{current_user}</StyledLink>
+            ) : <StyledLink to="/Login">ログイン</StyledLink>}
           </NavItem>
         </NavItems>
-      </Nabvar>
+      </Navbar>
       <Wrapper>
         <Routes>
           <Route path="/" element={<Top />}/>
-          {/* <Route path="/photo/index" element={<IndexPhoto />}/>
-          <Route path="/photo/new" element={<AddPhoto />}/> */}
+          <Route path="/photo/index" element={<IndexPhoto />}/>
+          <Route path="/photo/new" element={<AddPhoto />}/>
+          <Route path="/photo/share" element={<PhotoShare />}/>
           <Route path="/Login" element={<Login onUserChange={current_userChange}/>}/>
           <Route path="/user/new" element={<UserCreate />}/>
         </Routes>

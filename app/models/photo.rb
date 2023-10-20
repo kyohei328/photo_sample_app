@@ -25,8 +25,7 @@ class Photo < ApplicationRecord
     has_one_attached :image
 
     belongs_to :user
-
-    validates :url_file, presence: true
+    
     validates :title, presence: true
 
     def image_url

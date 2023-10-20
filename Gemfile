@@ -48,8 +48,9 @@ end
 
 # ユーザー認証
 gem 'sorcery'
-
+# デバッグ
 gem 'pry-byebug'
 gem 'pry-rails'
+
 gem 'rack-cors'
 gem 'fast_jsonapi'
