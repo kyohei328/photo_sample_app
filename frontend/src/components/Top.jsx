@@ -3,7 +3,7 @@ import React from 'react'
 const Top = () => {
   return (
     <div>
-      TOP
+      トップページ
     </div>
   )
 }
