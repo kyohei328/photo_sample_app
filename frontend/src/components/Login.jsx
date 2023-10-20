@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const LoginForm = styled.div`
 height: 100vh;
@@ -82,8 +83,9 @@ const Login = ({ onUserChange }) => {
 
     axios.post('http://localhost:3000/api/v1/authentication', formValues)
     .then((resp) => {
-        const userName = resp.data.name;
+        const userName = resp.data.user.name;
         onUserChange(userName);
+        Cookies.set("access_token", resp.data.key[0].access_token)
         navigate('/');
         // console.log(resp.data.name);
     })

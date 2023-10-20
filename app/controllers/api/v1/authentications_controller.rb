@@ -11,6 +11,6 @@ class Api::V1::AuthenticationsController < ApplicationController
     set_access_token!(@user)
 
     # render json: json_string
-    render json: @user
+    render json: { user: @user, key: @user.api_keys }
   end
 end

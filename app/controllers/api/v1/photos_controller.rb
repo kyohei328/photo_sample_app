@@ -26,16 +26,26 @@ class Api::V1::PhotosController < ApplicationController
     before_action :set_photo, only: %i[destroy update]
 
     def index
-        photo = Photo.all, methods: [:image_url]
-        render json: photo
+        # photo = Photo.all, methods: [:image_url]
+        photos = Photo.all
+        render json: photos
     end
 
     def create
-       photo = Photo.new
+      # binding.pry
+       photo = current_user.photos.build(photo_params)
+      #  photo.image.attach(params[:photo][:image])
+      #         blob = ActiveStorage::Blob.create_after_upload!(
+      #           io: StringIO.new(decode(params[:image].headers) + "\n"),
+      #           filename: params[:image].original_filename
+      #         )
+      #         post.image.attach(blob)
        if photo.save
-        render json: photo, methods: [:image_url]
+        # render json: photo, methods: [:image_url]
+        render json: photo
        else
-        render json: photo.errors, status: 422
+        # render json: photo.errors, status: 422
+        render json: { errors: photo.errors.full_messages }, status: :unprocessable_entity
        end
     end
 
@@ -54,10 +64,15 @@ class Api::V1::PhotosController < ApplicationController
     private
 
     def photo_params
-      params.require(:photo).permit(:title, :image)
+      # params.permit(:title, :description, :image)
+      params.require(:photo).permit(:title, :description, :image)
     end
 
     def set_photo
       photo = Photo.find(params[:id])
+    end
+
+    def decode(str)
+      Base64.decode64(str.split(',').last)
     end
 end
