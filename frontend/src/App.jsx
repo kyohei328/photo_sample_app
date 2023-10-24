@@ -8,6 +8,9 @@ import AddPhoto from './components/AddPhoto';
 import UserCreate from './components/UserCreate';
 import Top from './components/Top';
 import PhotoShare from './components/PhotoShare';
+import ShowPhoto from './components/ShowPhoto';
+import PhotoMap from './components/PhotoMap.tsx';
+import Map from './components/Map';
 
 
 
@@ -41,8 +44,9 @@ const NavItem = styled.li`
   }
 `
 const Wrapper = styled.div`
-  width: 700px;
+  width: 100%;
   max-width: 85%;
+  height: 100vh;
   margin: 20px auto;
 `
 const StyledLink = styled(Link)`
@@ -91,8 +95,14 @@ function App(props) {
           <Route path="/photo/index" element={<IndexPhoto />}/>
           <Route path="/photo/new" element={<AddPhoto />}/>
           <Route path="/photo/share" element={<PhotoShare />}/>
+          <Route path="/photo/:id" element={<ShowPhoto />}/>
           <Route path="/Login" element={<Login onUserChange={current_userChange}/>}/>
           <Route path="/user/new" element={<UserCreate />}/>
+          <Route path='/photo/map' element={<PhotoMap  defaultPosition={{
+            lat: 35.69079374035866,
+            lng: 139.76594718293336,
+          }}/>} />
+          <Route path="/map" element={<Map />}/>
         </Routes>
       </Wrapper>
     </>

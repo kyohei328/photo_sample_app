@@ -56,3 +56,6 @@ gem 'rack-cors'
 gem 'fast_jsonapi'
 # OGP
 gem "meta-tags"
+# 画像情報 取得
+gem 'mini_exiftool'
+gem 'exifr'
