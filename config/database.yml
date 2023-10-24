@@ -9,6 +9,20 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
+
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   username: root
+#   password: password
+#   socket: /tmp/mysql.sock
+#   host: db 
+
+# development:
+#   <<: *default
+#   database: bookapp_development
+
 development:
   <<: *default
   database: db/development.sqlite3

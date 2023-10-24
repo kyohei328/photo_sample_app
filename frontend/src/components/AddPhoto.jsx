@@ -80,6 +80,7 @@ const AddPhoto = () => {
   }
 
   const navigate = useNavigate();
+  
   const accessToken = Cookies.get('access_token');
   const headers = {
     'Authorization': `Bearer ${accessToken}` // Bearerトークンを含める
@@ -97,6 +98,7 @@ const AddPhoto = () => {
 
     axios.post('http://localhost:3000/api/v1/photos', formData, { headers })
     .then((resp) => {
+        console.log(resp)
         navigate('/photo/share');
         // console.log(resp.data.name);
     })
@@ -108,7 +110,7 @@ const AddPhoto = () => {
 
   const handleImageSelect = (e) => {
     const selectedImage = e.target.files[0];
-    console.log(selectedImage)
+    // console.log(e.target.files[0])
     if (selectedImage) {
       setFormValues({ ...formValues, image: selectedImage });
     }
