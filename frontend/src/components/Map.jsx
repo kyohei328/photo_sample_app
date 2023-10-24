@@ -97,7 +97,7 @@ const Map = () => {
 
   return (
     <>
-      <LoadScript googleMapsApiKey="AIzaSyATzj_5jd8Ulpwd65M0fuXzdRi9LMd-zcs" onLoad={() => createOffsetSize()}>
+      <LoadScript googleMapsApiKey="APIKEY" onLoad={() => createOffsetSize()}>
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
